@@ -1,0 +1,5 @@
+C:\Encode\Suscripcion\ENTIDADES\bin\Debug\ENTIDADES.dll
+C:\Encode\Suscripcion\ENTIDADES\bin\Debug\ENTIDADES.pdb
+C:\Encode\Suscripcion\ENTIDADES\obj\Debug\ENTIDADES.csproj.CoreCompileInputs.cache
+C:\Encode\Suscripcion\ENTIDADES\obj\Debug\ENTIDADES.dll
+C:\Encode\Suscripcion\ENTIDADES\obj\Debug\ENTIDADES.pdb
