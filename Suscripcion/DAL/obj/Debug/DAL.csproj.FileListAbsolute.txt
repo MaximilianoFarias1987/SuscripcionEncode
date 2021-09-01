@@ -7,3 +7,12 @@ C:\Encode\Suscripcion\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Encode\Suscripcion\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Encode\Suscripcion\DAL\obj\Debug\DAL.dll
 C:\Encode\Suscripcion\DAL\obj\Debug\DAL.pdb
+C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\bin\Debug\DAL.dll
+C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\bin\Debug\DAL.pdb
+C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\bin\Debug\ENTIDADES.dll
+C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\bin\Debug\ENTIDADES.pdb
+C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.dll
+C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.pdb

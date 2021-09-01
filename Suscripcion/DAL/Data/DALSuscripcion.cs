@@ -15,6 +15,8 @@ namespace DAL.Data
 
         public static bool Insertar(Suscripcion suscripcion)
         {
+            SqlTransaction transaction = null;
+            //Conexion.RollbackTransaction();
             //Conexion con = new Conexion();
             //Conexion.BeginTransaction();
             //SqlCommand Cmd = new SqlCommand();
@@ -25,22 +27,28 @@ namespace DAL.Data
                 Conexion.Cmd.CommandType = CommandType.StoredProcedure;
                 Conexion.Cmd.CommandText = nombreSP;
                 Conexion.Cmd.Parameters.AddWithValue("@IdSuscriptor", suscripcion.IdSuscriptor);
+                Conexion.transaction = Conexion.conexion.BeginTransaction();
+                Conexion.Cmd.Transaction = Conexion.transaction;
+                //Conexion.Cmd.Connection = Conexion.conexion;
                 Conexion.Cmd.ExecuteNonQuery();
                 Conexion.Cmd.Parameters.Clear();
 
-                //Conexion.CommitTransaction();
+                //transaction.Commit();
+                Conexion.CommitTransaction();
                 return true;
                 
             }
             catch (Exception)
             {
-                Conexion.RollbackTransaction();
+                //transaction.Rollback();
+                //Conexion.RollbackTransaction();
+                Conexion.BeginTransaction();
                 return false;
             }
-            finally
-            {
-                Conexion.CerrarConexion();
-            }
+            //finally
+            //{
+            //    Conexion.CerrarConexion();
+            //}
             
             
             

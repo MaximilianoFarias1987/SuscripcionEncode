@@ -12,8 +12,8 @@ namespace DAL.Data
 {
     public class Conexion
     {
-        private static SqlConnection conexion;
-        private static SqlTransaction transaction;
+        public static SqlConnection conexion;
+        public static SqlTransaction transaction;
         private static SqlCommand cmd;
         private  SqlDataReader dr = null;
 
@@ -46,8 +46,8 @@ namespace DAL.Data
             //conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["connDb"].ConnectionString);
             //conexion.Open();
             //Conexion.AbrirConexion();
-            conexion.Open();
-            transaction = conexion.BeginTransaction();
+            //conexion.Open();
+            //transaction = conexion.BeginTransaction();
         }
 
         //COMMIT
