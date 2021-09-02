@@ -15,7 +15,7 @@ namespace DAL.Data
 
         public static bool Insertar(Suscripcion suscripcion)
         {
-            SqlTransaction transaction = null;
+            //SqlTransaction transaction = null;
             //Conexion.RollbackTransaction();
             //Conexion con = new Conexion();
             //Conexion.BeginTransaction();
@@ -68,8 +68,8 @@ namespace DAL.Data
             }
             catch (Exception e)
             {
-                //return false;
-                throw new Exception("Ha ocurrido un error" + e.Message);
+                return false;
+                //throw new Exception("Ha ocurrido un error" + e.Message);
 
             }
         }

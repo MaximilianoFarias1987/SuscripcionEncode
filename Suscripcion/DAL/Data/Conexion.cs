@@ -95,6 +95,24 @@ namespace DAL.Data
             
         }
 
+        public bool ValidarSuscriptor(string tipoDoc, int numDoc)
+        {
+
+            AbrirConexion();
+            Cmd.CommandText = "select * from Suscriptor where TipoDocumento  = '" + tipoDoc + "' and NumeroDocumento = " + numDoc + "";
+            Dr = Cmd.ExecuteReader();
+
+            if (Dr.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         public static void AbrirConexion()
         {
             conexion.Open();

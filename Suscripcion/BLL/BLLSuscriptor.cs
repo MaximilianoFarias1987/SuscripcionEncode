@@ -26,7 +26,12 @@ namespace BLL
         }
 
 
+        public static bool ValidarSuscriptor(string tipoDoc, int numDoc)
+        {
 
+
+            return DALSuscriptor.ValidarSuscriptor(tipoDoc, numDoc); ;
+        }
 
 
         public static List<Suscriptor> listaSuscriptores(string tabla)

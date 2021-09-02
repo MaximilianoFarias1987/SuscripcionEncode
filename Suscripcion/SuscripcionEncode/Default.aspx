@@ -53,12 +53,12 @@
                 <div class="form-group">
                     <div class="col-md-5">
                         <asp:Label ID="lblNombre" Text="Nombre" runat="server" Font-Bold="true" />
-                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" type="text"/>
                         <asp:Label ID="lblMsjNombre" Text="" Font-Bold="true" runat="server" Visible="false" />
                     </div>
                     <div class="col-md-5">
                         <asp:Label ID="lblApellido" Text="Apellido" runat="server" Font-Bold="true" />
-                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" type="text" />
                         <asp:Label ID="lblMsjApellido" Text="" Font-Bold="true" runat="server" Visible="false" />
                     </div>
                     <div class="col-md-2">
@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-md-5">
                         <asp:Label ID="lblTelefono" Text="Teléfono" runat="server" Font-Bold="true" />
-                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"/>
                         <asp:Label ID="lblMsjTelefono" Text="" Font-Bold="true" runat="server" Visible="false" />
                     </div>
                     <div class="col-md-5">
@@ -150,6 +150,25 @@
 
         function MensajeEditarSuscriptorSuccess() {
             swal("Muy Bien!", "Suscriptor editado con exito", "success");
+        }
+
+        function MensajeSuscripcionVigente() {
+            swal("Suscripción!", "El Suscriptor tiene una suscripción vigente", "success");
+        }
+
+        function MensajeSuscriptorNoExiste() {
+            swal("Error", "El suscriptor no existe", "error");
+        }
+
+        function MensajeNombreUsuarioExiste() {
+            swal("Error", "Ya existe un suscriptor con ese Nombre de Usuario", "error");
+        }
+
+        function MensajeValidacion() {
+            
+            swal("Error", "Todos los campos son requeridos", "error");
+            let focus = document.getElementById("<%=txtNombre%>").value;
+            focus.focus();
         }
     </script>
 </asp:Content>

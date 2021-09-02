@@ -29,8 +29,11 @@ namespace SuscripcionEncode
             if (!Page.IsPostBack)
             {
                 btnGuardar.Enabled = false;
+                btnRegistrarSuscripcion.Enabled = false;
+                btnModificar.Enabled = false;
                 DeshabilitarTxt();
             }
+            
         }
 
 
@@ -71,6 +74,28 @@ namespace SuscripcionEncode
             txtEmail.Text = "";
             txtNombreUsuario.Text = "";
             txtContrasena.Text = "";
+        }
+
+
+        //METODO PARA OCULTAR LOS LABELS DE ERROR
+        private void OcultarLblError()
+        {
+
+            if (lblMsjTipoDoc.Visible)
+            {
+                lblMsjTipoDoc.Visible = false;
+            }
+            if (lblMsjNumDoc.Visible)
+            {
+                lblMsjNumDoc.Visible = false;
+            }
+            lblMsjNombre.Visible = false;
+            lblMsjApellido.Visible = false;
+            lblMsjDireccion.Visible = false;
+            lblMsjEmail.Visible = false;
+            lblMsjTelefono.Visible = false;
+            lblMsjNombreUsuario.Visible = false;
+            lblMsjContrasena.Visible = false;
         }
 
         //METODO PARA CARGAR LOS TEXTBOX
@@ -116,6 +141,23 @@ namespace SuscripcionEncode
 
         }
 
+        //VALIDAR NOMBRE DE USUARIO
+        private bool ValidarNombreUsuario(string nomUsuario)
+        {
+            //bool valido = false;
+            List<Suscriptor> lista = BLL.BLLSuscriptor.listaSuscriptores("Suscriptor");
+            foreach (var x in lista)
+            {
+                if (x.NombreUsuario == nomUsuario)
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeNombreUsuarioExiste();", true); ;
+                    return true;
+                }
+
+            }
+            return false;
+
+        }
 
         //VALIDAR SUSCRIPTOR CON SUSCRIPCION
         public static bool ValidarSuscripcion(string tipoDoc, int numDoc)
@@ -123,6 +165,16 @@ namespace SuscripcionEncode
             
 
             return BLL.BLLSuscripcion.ValidarSuscripcion(tipoDoc, numDoc);
+
+        }
+
+
+        //VALIDAR SUSCRIPTOR 
+        public static bool ValidarSuscriptor(string tipoDoc, int numDoc)
+        {
+
+
+            return BLL.BLLSuscriptor.ValidarSuscriptor(tipoDoc, numDoc);
 
         }
 
@@ -176,15 +228,43 @@ namespace SuscripcionEncode
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (ValidarSuscripcion(cboTipoDoc.Text,Convert.ToInt32(txtNumeroDoc.Text)))
+            
+            if (cboTipoDoc.SelectedIndex < 1)
             {
-                pnlUsuarioSuscripto.Visible = true;
-                CargarTextBox();
+                lblMsjTipoDoc.ForeColor = Color.Red;
+                lblMsjTipoDoc.Text = "Debe seleccionar un tipo de documento";
+                lblMsjTipoDoc.Visible = true;
+                cboTipoDoc.Focus();
+            }
+            if (txtNumeroDoc.Text == string.Empty)
+            {
+                lblMsjNumDoc.ForeColor = Color.Red;
+                lblMsjNumDoc.Text = "Debe ingresar un número de documento";
+                lblMsjNumDoc.Visible = true;
+                txtNumeroDoc.Focus();
+            }
+            else if (ValidarSuscriptor(cboTipoDoc.Text, Convert.ToInt32(txtNumeroDoc.Text)))
+            {
+                if (ValidarSuscripcion(cboTipoDoc.Text, Convert.ToInt32(txtNumeroDoc.Text)))
+                {
+                    //pnlUsuarioSuscripto.Visible = true;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeSuscripcionVigente();", true);
+                    CargarTextBox();
+                    btnModificar.Enabled = true;
+                    btnNuevo.Enabled = false;
+                }
+                else
+                {
+                    pnlUsuarioNoSuscripto.Visible = true;
+                }
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeSuscriptorExiste();", true);
+
             }
             else
             {
-                pnlUsuarioNoSuscripto.Visible = true;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeSuscriptorNoExiste();", true);
             }
+
             
         }
 
@@ -195,6 +275,8 @@ namespace SuscripcionEncode
             btnNuevo.Enabled = false;
             btnGuardar.Enabled = true;
             btnModificar.Enabled = false;
+            txtNumeroDoc.Enabled = false;
+            cboTipoDoc.Enabled = false;
             HabilitarTxt();
         }
 
@@ -238,96 +320,111 @@ namespace SuscripcionEncode
             
         }
 
+        private bool ValidarCampos()
+        {
+
+            if (cboTipoDoc.SelectedIndex < 1)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeValidacion();", true);
+                cboTipoDoc.Focus();
+                return false;
+            }
+            if (txtNumeroDoc.Text == string.Empty)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeValidacion();", true);
+                txtNumeroDoc.Focus();
+                return false;
+            }
+            if (txtNombre.Text == string.Empty)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeValidacion();", true);
+                //txtNombre.Focus();
+                return false;
+            }
+            if (txtApellido.Text == string.Empty)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeValidacion();", true);
+                txtApellido.Focus();
+                return false;
+            }
+            if (txtDireccion.Text == string.Empty)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeValidacion();", true);
+                txtDireccion.Focus();
+                return false;
+            }
+            if (txtEmail.Text == string.Empty)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeValidacion();", true);
+                txtEmail.Focus();
+                return false;
+            }
+            if (txtTelefono.Text == string.Empty)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeValidacion();", true);
+                txtTelefono.Focus();
+                return false;
+            }
+            if (txtNombreUsuario.Text == string.Empty)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeValidacion();", true);
+                txtNombreUsuario.Focus();
+                return false;
+            }
+            if (txtContrasena.Text == string.Empty)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeValidacion();", true);
+                txtContrasena.Focus();
+                return false;
+            }
+            return true;
+
+        }
+
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             nuevo = (bool)ViewState["variableNuevo"];
             if (nuevo)
             {
-                if (cboTipoDoc.SelectedIndex < 1)
+                if (ValidarCampos())
                 {
-                    lblMsjTipoDoc.ForeColor = Color.Red;
-                    lblMsjTipoDoc.Text = "Debe ingresar un número de documento";
-                    lblMsjTipoDoc.Visible = true;
-                    cboTipoDoc.Focus();
+                    if (!Validar(txtNombreUsuario.Text, Convert.ToInt32(txtNumeroDoc.Text), cboTipoDoc.Text))
+                    {
+                        InsertarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), cboTipoDoc.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
+                        //pnlSuccessfully.Visible = true;
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeInsertarSuscriptorSuccess();", true);
+                        Limpiar();
+                        OcultarLblError();
+                        btnModificar.Enabled = false;
+                        btnGuardar.Enabled = false;
+                        btnNuevo.Enabled = true;
+                        DeshabilitarTxt();
+                    }
                 }
-                if (txtNumeroDoc.Text == string.Empty)
-                {
-                    lblMsjNumDoc.ForeColor = Color.Red;
-                    lblMsjNumDoc.Text = "Debe ingresar un número de documento";
-                    lblMsjNumDoc.Visible = true;
-                    txtNumeroDoc.Focus();
-                }
-                if (txtNombre.Text == string.Empty)
-                {
-                    lblMsjNombre.ForeColor = Color.Red;
-                    lblMsjNombre.Text = "Debe ingresar un nombre";
-                    lblMsjNombre.Visible = true;
-                    txtNombre.Focus();
-                }
-                if (txtApellido.Text == string.Empty)
-                {
-                    lblMsjApellido.ForeColor = Color.Red;
-                    lblMsjApellido.Text = "Debe ingresar un apellido";
-                    lblMsjApellido.Visible = true;
-                    txtApellido.Focus();
-                }
-                if (txtDireccion.Text == string.Empty)
-                {
-                    lblMsjDireccion.ForeColor = Color.Red;
-                    lblMsjDireccion.Text = "Debe ingresar un direccion";
-                    lblMsjDireccion.Visible = true;
-                    txtDireccion.Focus();
-                }
-                if (txtEmail.Text == string.Empty)
-                {
-                    lblMsjEmail.ForeColor = Color.Red;
-                    lblMsjEmail.Text = "Debe ingresar un email";
-                    lblMsjEmail.Visible = true;
-                    txtEmail.Focus();
-                }
-                if (txtTelefono.Text == string.Empty)
-                {
-                    lblMsjTelefono.ForeColor = Color.Red;
-                    lblMsjTelefono.Text = "Debe ingresar un telefono";
-                    lblMsjTelefono.Visible = true;
-                    txtTelefono.Focus();
-                }
-                if (txtNombreUsuario.Text == string.Empty)
-                {
-                    lblMsjNombreUsuario.ForeColor = Color.Red;
-                    lblMsjNombreUsuario.Text = "Debe ingresar un nombre de usuario";
-                    lblMsjNombreUsuario.Visible = true;
-                    txtNombreUsuario.Focus();
-                }
-                if (txtContrasena.Text == string.Empty)
-                {
-                    lblMsjContrasena.ForeColor = Color.Red;
-                    lblMsjContrasena.Text = "Debe ingresar un contraseña";
-                    lblMsjContrasena.Visible = true;
-                    txtContrasena.Focus();
-                }
-                else if(!Validar(txtNombreUsuario.Text, Convert.ToInt32(txtNumeroDoc.Text), cboTipoDoc.Text))
-                {
-                    InsertarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), cboTipoDoc.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
-                    //pnlSuccessfully.Visible = true;
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeInsertarSuscriptorSuccess();", true);
-                    Limpiar();
-                    btnModificar.Enabled = true;
-                    btnGuardar.Enabled = false;
-                    btnNuevo.Enabled = true;
-                    DeshabilitarTxt();
-                }
-                
             }
             else
             {
-                EditarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeEditarSuscriptorSuccess();", true);
-                Limpiar();
-                btnModificar.Enabled = true;
-                btnGuardar.Enabled = false;
-                btnNuevo.Enabled = true;
-                DeshabilitarTxt();
+                if (ValidarCampos())
+                {
+                    if (!ValidarNombreUsuario(txtNombreUsuario.Text))
+                    {
+                        EditarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeEditarSuscriptorSuccess();", true);
+                        Limpiar();
+                        OcultarLblError();
+                        btnModificar.Enabled = true;
+                        btnGuardar.Enabled = false;
+                        btnNuevo.Enabled = true;
+                        btnModificar.Visible = false;
+                        txtNumeroDoc.Enabled = true;
+                        cboTipoDoc.Enabled = true;
+                        DeshabilitarTxt();
+                        
+                    }
+                }
+                
+
             }
         }
 
@@ -340,9 +437,13 @@ namespace SuscripcionEncode
         {
             Limpiar();
             btnNuevo.Enabled = true;
-            btnModificar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnGuardar.Enabled = false;
+            cboTipoDoc.Enabled = true;
+            txtNumeroDoc.Enabled = true;
             pnlSuccessfully.Visible = false;
             DeshabilitarTxt();
+            
         }
 
         protected void btnCerrarSuccess_Click(object sender, EventArgs e)
@@ -363,12 +464,19 @@ namespace SuscripcionEncode
         protected void btnCerrarSuscripcion_Click(object sender, EventArgs e)
         {
             pnlUsuarioNoSuscripto.Visible = false;
+            btnNuevo.Enabled = false;
+            btnModificar.Enabled = true;
+            CargarTextBox();
+            
         }
 
         protected void btnSuscribir_Click(object sender, EventArgs e)
         {
             pnlUsuarioNoSuscripto.Visible = false;
             CargarTextBox();
+            btnNuevo.Enabled = false;
+            btnModificar.Enabled = true;
+            btnRegistrarSuscripcion.Enabled = true;
         }
     }
 }

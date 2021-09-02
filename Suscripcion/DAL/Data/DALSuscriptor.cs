@@ -89,53 +89,24 @@ namespace DAL.Data
 
 
 
-        //public static Suscriptor CrearObjeto()
-        //{
-        //    Conexion conexion = new Conexion();
+        //VALIDAR SUSCRIPTOR
+        public static bool ValidarSuscriptor(string tipoDoc, int numDoc)
+        {
+            try
+            {
+                Conexion conexion = new Conexion();
+                Conexion.CerrarConexion();
+                return conexion.ValidarSuscriptor(tipoDoc, numDoc);
 
-        //    Suscriptor s = new Suscriptor();
-        //    if (!conexion.Dr.IsDBNull(0))
-        //    {
-        //        s.IdSuscriptor = conexion.Dr.GetInt32(0);
-        //    }
-        //    if (!conexion.Dr.IsDBNull(1))
-        //    {
-        //        s.Nombre = conexion.Dr.GetString(1);
-        //    }
-        //    if (!conexion.Dr.IsDBNull(2))
-        //    {
-        //        s.Apellido = conexion.Dr.GetString(2);
-        //    }
-        //    if (!conexion.Dr.IsDBNull(3))
-        //    {
-        //        s.Documento = conexion.Dr.GetInt32(3);
-        //    }
-        //    if (!conexion.Dr.IsDBNull(4))
-        //    {
-        //        s.TipoDocumento = conexion.Dr.GetString(4);
-        //    }
-        //    if (!conexion.Dr.IsDBNull(5))
-        //    {
-        //        s.Direccion = conexion.Dr.GetString(5);
-        //    }
-        //    if (!conexion.Dr.IsDBNull(6))
-        //    {
-        //        s.Telefono = conexion.Dr.GetString(6);
-        //    }
-        //    if (!conexion.Dr.IsDBNull(7))
-        //    {
-        //        s.Email = conexion.Dr.GetString(7);
-        //    }
-        //    if (!conexion.Dr.IsDBNull(8))
-        //    {
-        //        s.NombreUsuario = conexion.Dr.GetString(8);
-        //    }
-        //    if (!conexion.Dr.IsDBNull(9))
-        //    {
-        //        s.Contrasena = conexion.Dr.GetString(9);
-        //    }
-        //    return s;
-        //}
+
+            }
+            catch (Exception e)
+            {
+                return false;
+                //throw new Exception("Ha ocurrido un error" + e.Message);
+
+            }
+        }
 
 
         //LEER TABLA
