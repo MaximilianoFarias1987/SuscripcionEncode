@@ -170,5 +170,9 @@
             let focus = document.getElementById("<%=txtNombre%>").value;
             focus.focus();
         }
+
+        function MensajeNomUsuarioExiste() {
+            swal("Error", "Ya existe un Suscriptor con ese nombre de usuario", "error");
+        }
     </script>
 </asp:Content>

@@ -69,7 +69,7 @@ namespace DAL.Data
                 Conexion.Cmd.Parameters.AddWithValue("@Telefono", suscriptor.Telefono);
                 Conexion.Cmd.Parameters.AddWithValue("@Email", suscriptor.Email);
                 Conexion.Cmd.Parameters.AddWithValue("@NombreUsuario", suscriptor.NombreUsuario);
-                Conexion.Cmd.Parameters.AddWithValue("@Password", suscriptor.Contrasena);
+                Conexion.Cmd.Parameters.AddWithValue("@Password", EncryptKeys.EncriptarPassword(suscriptor.Contrasena, "keys"));
                 Conexion.Cmd.ExecuteNonQuery();
                 Conexion.Cmd.Parameters.Clear();
                 return true;

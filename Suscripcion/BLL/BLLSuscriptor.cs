@@ -12,7 +12,7 @@ namespace BLL
 {
     public class BLLSuscriptor
     {
-        Conexion conexion = new Conexion();
+        //Conexion conexion = new Conexion();
         public static bool Insertar(Suscriptor suscriptor)
         {
 

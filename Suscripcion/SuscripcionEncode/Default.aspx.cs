@@ -142,15 +142,19 @@ namespace SuscripcionEncode
         }
 
         //VALIDAR NOMBRE DE USUARIO
-        private bool ValidarNombreUsuario(string nomUsuario)
+        private bool ValidarNombreUsuario(string nomUsuario, int documento, string tipoDoc)
         {
-            //bool valido = false;
+            bool docValido = false;
             List<Suscriptor> lista = BLL.BLLSuscriptor.listaSuscriptores("Suscriptor");
             foreach (var x in lista)
             {
-                if (x.NombreUsuario == nomUsuario)
+                if (x.TipoDocumento == tipoDoc && x.Documento == documento)
                 {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeNombreUsuarioExiste();", true); ;
+                    docValido = true;
+                }
+                if (x.NombreUsuario == nomUsuario && docValido == false)
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeNomUsuarioExiste();", true);
                     return true;
                 }
 
@@ -158,6 +162,24 @@ namespace SuscripcionEncode
             return false;
 
         }
+
+        ////VALIDAR NOMBRE DE USUARIO
+        //private bool ValidarNombreUsuario(string nomUsuario)
+        //{
+        //    //bool valido = false;
+        //    List<Suscriptor> lista = BLL.BLLSuscriptor.listaSuscriptores("Suscriptor");
+        //    foreach (var x in lista)
+        //    {
+        //        if (x.NombreUsuario == nomUsuario)
+        //        {
+        //            Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeNombreUsuarioExiste();", true); ;
+        //            return true;
+        //        }
+
+        //    }
+        //    return false;
+
+        //}
 
         //VALIDAR SUSCRIPTOR CON SUSCRIPCION
         public static bool ValidarSuscripcion(string tipoDoc, int numDoc)
@@ -407,7 +429,7 @@ namespace SuscripcionEncode
             {
                 if (ValidarCampos())
                 {
-                    if (!ValidarNombreUsuario(txtNombreUsuario.Text))
+                    if (!ValidarNombreUsuario(txtNombreUsuario.Text, Convert.ToInt32(txtNumeroDoc.Text), cboTipoDoc.Text))
                     {
                         EditarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeEditarSuscriptorSuccess();", true);
