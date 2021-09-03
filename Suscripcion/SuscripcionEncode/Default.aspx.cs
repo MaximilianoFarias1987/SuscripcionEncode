@@ -431,18 +431,37 @@ namespace SuscripcionEncode
                 {
                     if (!ValidarNombreUsuario(txtNombreUsuario.Text, Convert.ToInt32(txtNumeroDoc.Text), cboTipoDoc.Text))
                     {
-                        EditarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeEditarSuscriptorSuccess();", true);
-                        Limpiar();
-                        OcultarLblError();
-                        btnModificar.Enabled = true;
-                        btnGuardar.Enabled = false;
-                        btnNuevo.Enabled = true;
-                        btnModificar.Visible = false;
-                        txtNumeroDoc.Enabled = true;
-                        cboTipoDoc.Enabled = true;
-                        DeshabilitarTxt();
+                        bool editar = EditarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
+                        if (editar)
+                        {
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeEditarSuscriptorSuccess();", true);
+                            Limpiar();
+                            OcultarLblError();
+                            btnModificar.Enabled = true;
+                            btnGuardar.Enabled = false;
+                            btnNuevo.Enabled = true;
+                            btnModificar.Visible = false;
+                            txtNumeroDoc.Enabled = true;
+                            cboTipoDoc.Enabled = true;
+                            DeshabilitarTxt();
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeEditarSuscriptorError();", true);
+                            Limpiar();
+                            OcultarLblError();
+                            btnModificar.Enabled = true;
+                            btnGuardar.Enabled = false;
+                            btnNuevo.Enabled = true;
+                            btnModificar.Visible = false;
+                            txtNumeroDoc.Enabled = true;
+                            cboTipoDoc.Enabled = true;
+                            DeshabilitarTxt();
+                        }
                         
+                        //EditarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
+
+
                     }
                 }
                 

@@ -43,11 +43,7 @@ namespace DAL.Data
                     RollbackTransaction();
                 }
             }
-            //conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["connDb"].ConnectionString);
-            //conexion.Open();
-            //Conexion.AbrirConexion();
-            //conexion.Open();
-            //transaction = conexion.BeginTransaction();
+            
         }
 
         //COMMIT
