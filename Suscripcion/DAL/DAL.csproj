@@ -45,6 +45,7 @@
     <Compile Include="Data\DALSuscripcion.cs" />
     <Compile Include="Data\DALSuscriptor.cs" />
     <Compile Include="Data\Conexion.cs" />
+    <Compile Include="Data\EncryptKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

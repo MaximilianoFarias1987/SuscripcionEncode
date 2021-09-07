@@ -15,11 +15,7 @@ namespace DAL.Data
 
         public static bool Insertar(Suscripcion suscripcion)
         {
-            //SqlTransaction transaction = null;
-            //Conexion.RollbackTransaction();
-            //Conexion con = new Conexion();
-            //Conexion.BeginTransaction();
-            //SqlCommand Cmd = new SqlCommand();
+            
             try
             {
                 string nombreSP = "sp_InsertarSuscripcion";

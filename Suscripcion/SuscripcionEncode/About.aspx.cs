@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ENTIDADES;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,20 @@ namespace SuscripcionEncode
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                CargarTabla();
+            }
+            
+        }
 
+        private void CargarTabla()
+        {
+            List<Suscriptor> lista = BLL.BLLSuscriptor.listaSuscriptores("Suscriptor");
+
+            
+            dtgSuscriptor.DataSource = BLL.BLLSuscriptor.listaSuscriptores("Suscriptor");
+            dtgSuscriptor.DataBind();
         }
     }
 }

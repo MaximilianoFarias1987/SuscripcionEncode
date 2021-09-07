@@ -142,15 +142,19 @@ namespace SuscripcionEncode
         }
 
         //VALIDAR NOMBRE DE USUARIO
-        private bool ValidarNombreUsuario(string nomUsuario)
+        private bool ValidarNombreUsuario(string nomUsuario, int documento, string tipoDoc)
         {
-            //bool valido = false;
+            bool docValido = false;
             List<Suscriptor> lista = BLL.BLLSuscriptor.listaSuscriptores("Suscriptor");
             foreach (var x in lista)
             {
-                if (x.NombreUsuario == nomUsuario)
+                if (x.TipoDocumento == tipoDoc && x.Documento == documento)
                 {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeNombreUsuarioExiste();", true); ;
+                    docValido = true;
+                }
+                if (x.NombreUsuario == nomUsuario && docValido == false)
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeNomUsuarioExiste();", true);
                     return true;
                 }
 
@@ -159,6 +163,7 @@ namespace SuscripcionEncode
 
         }
 
+        
         //VALIDAR SUSCRIPTOR CON SUSCRIPCION
         public static bool ValidarSuscripcion(string tipoDoc, int numDoc)
         {
@@ -198,6 +203,7 @@ namespace SuscripcionEncode
         //EDITAR
         public bool EditarSuscriptor(string nombre, string apellido, int numDoc, string direccion, string tel, string email, string user, string pass)
         {
+            
             Suscriptor suscriptor = new Suscriptor();
             suscriptor.Nombre = nombre;
             suscriptor.Apellido = apellido;
@@ -206,7 +212,7 @@ namespace SuscripcionEncode
             suscriptor.Telefono = tel;
             suscriptor.Email = email;
             suscriptor.NombreUsuario = user;
-            suscriptor.Contrasena = pass;
+            suscriptor.Contrasena = DAL.Data.EncryptKeys.DesencriptarPassword(pass,"keys");
             return BLL.BLLSuscriptor.Editar(suscriptor);
         }
 
@@ -247,7 +253,7 @@ namespace SuscripcionEncode
             {
                 if (ValidarSuscripcion(cboTipoDoc.Text, Convert.ToInt32(txtNumeroDoc.Text)))
                 {
-                    //pnlUsuarioSuscripto.Visible = true;
+                   
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeSuscripcionVigente();", true);
                     CargarTextBox();
                     btnModificar.Enabled = true;
@@ -257,7 +263,7 @@ namespace SuscripcionEncode
                 {
                     pnlUsuarioNoSuscripto.Visible = true;
                 }
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeSuscriptorExiste();", true);
+                
 
             }
             else
@@ -392,7 +398,6 @@ namespace SuscripcionEncode
                     if (!Validar(txtNombreUsuario.Text, Convert.ToInt32(txtNumeroDoc.Text), cboTipoDoc.Text))
                     {
                         InsertarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), cboTipoDoc.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
-                        //pnlSuccessfully.Visible = true;
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeInsertarSuscriptorSuccess();", true);
                         Limpiar();
                         OcultarLblError();
@@ -407,20 +412,26 @@ namespace SuscripcionEncode
             {
                 if (ValidarCampos())
                 {
-                    if (!ValidarNombreUsuario(txtNombreUsuario.Text))
+                    if (!ValidarNombreUsuario(txtNombreUsuario.Text, Convert.ToInt32(txtNumeroDoc.Text), cboTipoDoc.Text))
                     {
                         EditarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeEditarSuscriptorSuccess();", true);
-                        Limpiar();
-                        OcultarLblError();
-                        btnModificar.Enabled = true;
-                        btnGuardar.Enabled = false;
-                        btnNuevo.Enabled = true;
-                        btnModificar.Visible = false;
-                        txtNumeroDoc.Enabled = true;
-                        cboTipoDoc.Enabled = true;
-                        DeshabilitarTxt();
+                       
                         
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "MensajeEditarSuscriptorSuccess();", true);
+                            Limpiar();
+                            OcultarLblError();
+                            btnModificar.Enabled = true;
+                            btnGuardar.Enabled = false;
+                            btnNuevo.Enabled = true;
+                            btnModificar.Visible = false;
+                            txtNumeroDoc.Enabled = true;
+                            cboTipoDoc.Enabled = true;
+                            DeshabilitarTxt();
+                        
+                        
+                        //EditarSuscriptor(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNumeroDoc.Text), txtDireccion.Text, txtTelefono.Text, txtEmail.Text, txtNombreUsuario.Text, txtContrasena.Text);
+
+
                     }
                 }
                 

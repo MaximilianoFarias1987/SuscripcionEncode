@@ -16,3 +16,12 @@ C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.csproj.CoreCompile
 C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.dll
 C:\GitProyect\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.pdb
+C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\bin\Debug\DAL.dll
+C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\bin\Debug\DAL.pdb
+C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\bin\Debug\ENTIDADES.dll
+C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\bin\Debug\ENTIDADES.pdb
+C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\obj\Debug\DAL.dll
+C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\obj\Debug\DAL.pdb
