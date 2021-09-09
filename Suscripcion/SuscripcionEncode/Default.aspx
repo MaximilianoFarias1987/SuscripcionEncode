@@ -16,6 +16,48 @@
         <asp:Button ID="btnSuscribir" runat="server" BackColor="Black" Font-Bold="True" Font-Size="X-Large" ForeColor="White" Height="34px" style="margin-left: 23px" Text="Aceptar" Width="109px" OnClick="btnSuscribir_Click" />
         <asp:Button ID="btnCerrarSuscripcion" runat="server" BackColor="Black" Font-Bold="True" Font-Size="X-Large" ForeColor="White" Height="34px" style="margin-left: 23px" Text="Cancelar" Width="117px" OnClick="btnCerrarSuscripcion_Click" />
     </asp:Panel>
+
+
+    <%-- MODAL --%>
+
+    
+
+    <div class="container mt-5">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none" id="modal">
+                Abrir Modal C#
+            </button>
+
+        <!-- Modal C# -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Primer Modal</h5>
+                        <%--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <asp:Label ID="lblMensaje" name="lblMensaje" Text="El suscriptor no tiene una suscripcion vigente. ¿Desea suscribirlo?" runat="server" /><br />
+                        <br />
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <%--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="getCerrarC()">Cerrar</button>--%>
+                        <asp:Button ID="btnCerrarC" Text="Cerrar" CssClass="btn btn-secondary" data-bs-dismiss="modal" runat="server" OnClick="btnCerrarC_Click" />
+
+                        <asp:Button Text="Aceptar" CssClass="btn btn-primary" runat="server" ID="btnOk" OnClick="btnOk_Click" />
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <hr />
     
     <div class="border">
@@ -173,6 +215,16 @@
 
         function MensajeNomUsuarioExiste() {
             swal("Error", "Ya existe un Suscriptor con ese nombre de usuario", "error");
+        }
+
+
+        function abrirModal() {
+            $('#staticBackdrop').modal('show'); // abrir
+        }
+
+
+        function cerrarModal() {
+            $('#staticBackdrop').modal('hide'); // cerrar
         }
     </script>
 </asp:Content>

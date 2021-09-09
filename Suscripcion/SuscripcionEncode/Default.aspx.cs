@@ -261,7 +261,8 @@ namespace SuscripcionEncode
                 }
                 else
                 {
-                    pnlUsuarioNoSuscripto.Visible = true;
+                    //pnlUsuarioNoSuscripto.Visible = true;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "abrirModal();", true);
                 }
                 
 
@@ -484,6 +485,19 @@ namespace SuscripcionEncode
         protected void btnSuscribir_Click(object sender, EventArgs e)
         {
             pnlUsuarioNoSuscripto.Visible = false;
+            CargarTextBox();
+            btnNuevo.Enabled = false;
+            btnModificar.Enabled = true;
+            btnRegistrarSuscripcion.Enabled = true;
+        }
+
+        protected void btnCerrarC_Click(object sender, EventArgs e)
+        {
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "cerrarModal();", true);
+        }
+
+        protected void btnOk_Click(object sender, EventArgs e)
+        {
             CargarTextBox();
             btnNuevo.Enabled = false;
             btnModificar.Enabled = true;

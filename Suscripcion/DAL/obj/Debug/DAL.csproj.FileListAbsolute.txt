@@ -25,3 +25,12 @@ C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\obj\Debug\DAL.cspro
 C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\obj\Debug\DAL.dll
 C:\Users\Maxi\Desktop\SuscripcionEncode-main\Suscripcion\DAL\obj\Debug\DAL.pdb
+C:\Proyectos\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Proyectos\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Proyectos\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.dll
+C:\Proyectos\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.pdb
+C:\Proyectos\SuscripcionEncode\Suscripcion\DAL\bin\Debug\DAL.dll
+C:\Proyectos\SuscripcionEncode\Suscripcion\DAL\bin\Debug\DAL.pdb
+C:\Proyectos\SuscripcionEncode\Suscripcion\DAL\bin\Debug\ENTIDADES.dll
+C:\Proyectos\SuscripcionEncode\Suscripcion\DAL\bin\Debug\ENTIDADES.pdb
+C:\Proyectos\SuscripcionEncode\Suscripcion\DAL\obj\Debug\DAL.csproj.CopyComplete
