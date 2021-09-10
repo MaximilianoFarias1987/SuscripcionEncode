@@ -18,14 +18,14 @@
     </asp:Panel>
 
 
-    <%-- MODAL --%>
+    <%--INICIO MODAL --%>
 
     
 
     <div class="container mt-5">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none" id="modal">
+            <%--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="display:none" id="modal">
                 Abrir Modal C#
-            </button>
+            </button>--%>
 
         <!-- Modal C# -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-
+<%-- FIN MODAL --%>
 
     <hr />
     

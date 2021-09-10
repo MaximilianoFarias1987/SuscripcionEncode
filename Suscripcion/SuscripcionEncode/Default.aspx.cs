@@ -262,7 +262,7 @@ namespace SuscripcionEncode
                 else
                 {
                     //pnlUsuarioNoSuscripto.Visible = true;
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "abrirModal();", true);
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "MyFunction", "abrirModal()", true);
                 }
                 
 
