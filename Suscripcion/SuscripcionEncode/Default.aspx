@@ -218,6 +218,8 @@
         }
 
 
+        //FUNCIONES MODAL
+
         function abrirModal() {
             $('#staticBackdrop').modal('show'); // abrir
         }
@@ -226,5 +228,7 @@
         function cerrarModal() {
             $('#staticBackdrop').modal('hide'); // cerrar
         }
+
+        //FIN FUNCIONES MODAL
     </script>
 </asp:Content>
